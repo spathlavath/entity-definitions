@@ -1,4 +1,5 @@
 relationships:
+  # Relationship for traditional Infrastructure agent MySQL nodes
   - name: apmApplicationCallsInfraMysqlNode
     version: "1"
     origins:
@@ -29,3 +30,33 @@ relationships:
               - value: ":"
               - attribute: metricName__5 # port
             hashAlgorithm: FARM_HASH
+
+  # Relationship for OpenTelemetry MySQL nodes
+  - name: apmApplicationCallsOtelMysqlNode
+    version: "1"
+    origins:
+      - APM Metrics
+    conditions:
+      - attribute: metricName
+        # "datastore/instance/MySQL/$host/$port"
+        startsWith: "datastore/instance/MySQL/"
+    relationship:
+      expires: P75M
+      relationshipType: CALLS
+      source:
+        extractGuid:
+          attribute: entity.guid
+      target:
+        buildGuid:
+          account:
+            lookup: true
+          domain:
+            value: INFRA
+          type:
+            value: MYSQLNODE
+            valueInGuid: NA
+          identifier:
+            fragments:
+              - attribute: metricName__4 # hostname
+              - value: ":"
+              - attribute: metricName__5 # port

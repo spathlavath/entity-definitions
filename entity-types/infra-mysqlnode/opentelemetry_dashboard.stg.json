@@ -19,7 +19,7 @@
             "nrqlQueries": [
               {
                 "accountId": 0,
-                "query": "SELECT average(`mysql.operations`) as 'Total Operations' FROM Metric TIMESERIES auto"
+                "query": "SELECT filter(average(mysql.commands), WHERE command = 'insert') AS `Insert Commands`, filter(average(mysql.commands), WHERE command = 'select') AS `Select Commands`, filter(average(mysql.commands), WHERE command = 'update') AS `Update Commands`, filter(average(mysql.commands), WHERE command = 'delete') AS `Delete Commands` FROM Metric TIMESERIES auto"
               }
             ]
           }
@@ -119,7 +119,7 @@
             "nrqlQueries": [
               {
                 "accountId": 0,
-                "query": "SELECT average(`mysql.buffer_pool.usage`) as 'Total InnoDB Bytes' FROM Metric  TIMESERIES auto"
+                "query": "SELECT filter(average(mysql.buffer_pool.operations), WHERE operation IN ('read_requests', 'reads', 'read_ahead', 'read_ahead_rnd')) AS `Total Read Operations`, filter(average(mysql.buffer_pool.operations), WHERE operation = 'write_requests') AS `Write Operations` FROM Metric WHERE metricName = 'mysql.buffer_pool.operations' TIMESERIES auto"
               }
             ]
           }
@@ -139,7 +139,7 @@
             "nrqlQueries": [
               {
                 "accountId": 0,
-                "query": "SELECT average(`mysql.client.network.io`) FROM Metric  TIMESERIES auto"
+                "query": "SELECT filter(average(mysql.client.network.io), WHERE direction = 'received') AS `Bytes Received`, filter(average(mysql.client.network.io), WHERE direction = 'sent') AS `Bytes Sent`, average(mysql.client.network.io) AS `Total Network IO` FROM Metric WHERE metricName = 'mysql.client.network.io' TIMESERIES auto"
               }
             ]
           }
