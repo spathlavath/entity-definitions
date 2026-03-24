@@ -42,7 +42,7 @@ synthesis:
         - attribute: instrumentation.provider
           value: opentelemetry
         - attribute: otel.library.name
-          value: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/newrelicoraclereceiver
+          value: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/oracledbreceiver
       tags:
         otel.library.name:
           entityTagName: instrumentation.name
@@ -75,7 +75,7 @@ synthesis:
         - attribute: instrumentation.provider
           value: opentelemetry
         - attribute: otel.library.name
-          value: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/newrelicoraclereceiver
+          value: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/oracledbreceiver
       tags:
         otel.library.name:
           entityTagName: instrumentation.name
@@ -110,7 +110,7 @@ synthesis:
         - attribute: instrumentation.provider
           value: opentelemetry
         - attribute: otel.library.name
-          value: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/newrelicoraclereceiver
+          value: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/oracledbreceiver
       tags:
         otel.library.name:
           entityTagName: instrumentation.name
